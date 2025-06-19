@@ -1,0 +1,58 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: demo-app
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - demo-network
+    env_file:
+      - .env.prod
+
+  db:
+    image: postgres:15
+    container_name: demo-db
+    env_file:
+      - .env.prod
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      - db_demo:/var/lib/postgresql/data
+    networks:
+      - demo-network
+
+  pgadmin4:
+    image: elestio/pgadmin:REL-9_4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "123456"
+      PGADMIN_LISTEN_PORT: 8081
+    depends_on:
+      - db
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
+    networks:
+      - demo-network
+
+  redis:
+    image: redis:8.0.2
+    ports:
+      - "6379:6379"
+    networks:
+      - demo-network
+
+volumes:
+  db_demo:
+
+networks:
+  demo-network:
