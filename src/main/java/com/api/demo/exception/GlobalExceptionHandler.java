@@ -3,14 +3,17 @@ package com.api.demo.exception;
 import java.nio.file.AccessDeniedException;
 import java.util.Objects;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.api.demo.dto.response.ApiResponse;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-// @RestControllerAdvice
+@Hidden
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = RuntimeException.class)

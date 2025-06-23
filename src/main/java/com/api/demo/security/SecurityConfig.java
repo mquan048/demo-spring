@@ -1,5 +1,6 @@
 package com.api.demo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,7 +22,8 @@ public class SecurityConfig {
     //    @Value("${env.security.jwt-secret}")
     //    private String JWT_SECRET;
 
-    private final CustomJwtDecoder customJwtDecoder = new CustomJwtDecoder();
+    @Autowired
+    private CustomJwtDecoder customJwtDecoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -31,7 +33,7 @@ public class SecurityConfig {
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**")
                 .permitAll()
                 .anyRequest()
-                .permitAll());
+                .authenticated());
 
         httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
                         .decoder(customJwtDecoder)

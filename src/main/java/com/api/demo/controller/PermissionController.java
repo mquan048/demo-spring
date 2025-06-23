@@ -2,6 +2,7 @@ package com.api.demo.controller;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/permission")
 @RequiredArgsConstructor
 @Tag(name = "Permission", description = "Permission management APIs")
+@SecurityRequirement(name = "bearerAuth")
 public class PermissionController {
     private final PermissionService permissionService;
 
