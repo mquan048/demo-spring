@@ -1,5 +1,5 @@
 # Step 1: Build app
-FROM maven:3.9.9-amazoncorretto-21-al2023 as build
+FROM maven:3.9.9-eclipse-temurin-21 as build
 
 WORKDIR /app
 COPY pom.xml .
@@ -8,7 +8,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Step 2: Run app
-FROM amazoncorretto:21.0.7-alpine3.21
+FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
