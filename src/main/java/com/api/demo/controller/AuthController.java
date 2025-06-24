@@ -1,6 +1,5 @@
 package com.api.demo.controller;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +15,7 @@ import com.api.demo.dto.response.ApiResponse;
 import com.api.demo.dto.response.LoginResponse;
 import com.api.demo.service.AuthService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

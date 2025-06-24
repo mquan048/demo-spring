@@ -2,7 +2,6 @@ package com.api.demo.controller;
 
 import java.util.List;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,7 @@ import com.api.demo.dto.response.UserResponse;
 import com.api.demo.model.User;
 import com.api.demo.service.UserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
