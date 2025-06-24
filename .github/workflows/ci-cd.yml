@@ -22,8 +22,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Run Maven Clean
-        run: mvn clean --file pom.xml
+      - name: Run Flyway
+        run: mvn clean flyway:migrate
 
   build:
     name: Build Image
